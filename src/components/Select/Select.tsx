@@ -1,12 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function Select() {
     const [value, setValue] = useState('');
     const [filmList, setFilmList] = useState([]);
     const [error, setError] = useState();
-
-    const [characters, setCharacters] = useState([]);
-    const [error2, setError2] = useState();
 
     const selectHandler = (event: any) => {
         setValue(event.target.value);
@@ -29,37 +26,19 @@ function Select() {
             })
     }
 
-    /**
-     * create a fetch characters here
-     */
-    function fetchCharacters(film: string) {
-        const url = 'https://swapi.co/api/films/1';
-        fetch(url, {
-            headers: {
-                'Content-type': 'application/json'
-            },
-            body: JSON.stringify(film)
-            })
-            .then(res => {
-                return res.json();
-            })
-            .then(res => {
-                setCharacters(res);
-            })
-            .catch(err => {
-                setError2(err.message);
-            })
-    }
-
-    console.log(value);
+    //fetch the list when the app is loading
+    useEffect(() => {
+        fetchList();
+    }, []);
 
     return (
         <div className="select-wrapper">
+            {error && <h5>`There was an error: ${error}`</h5>}
             <select className="select-input" value={value} onChange={e => selectHandler(e)}>
                 <optgroup>
-                    <option value="manuz">testing</option>
-                    <option value="cheru">testing</option>
-                    <option value="testing">testing</option>
+                    {filmList.map((el, i) => {
+                        return <option key={i} value={el}>el</option>
+                    })}
                 </optgroup>
             </select>
         </div>
