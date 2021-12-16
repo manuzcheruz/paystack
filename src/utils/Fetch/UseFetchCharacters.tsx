@@ -3,7 +3,7 @@ import { useState } from "react";
 /**
  * create a fetch characters data here
  */
- export function UseFetchCharacters(film: string): {data: string[], error: string} {
+ export function UseFetchCharacters(film: string): {data: CharacterData[], error: string} {
     const [data, setData] = useState([]); 
     const [error, setError] = useState('');
     const url = 'https://swapi.co/api/films/1';
@@ -17,7 +17,7 @@ import { useState } from "react";
         .then(res => {
             return res.json();
         })
-        .then(res => {
+        .then((res) => {
             setData(res);
         })
         .catch(err => {

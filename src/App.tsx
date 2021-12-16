@@ -14,7 +14,11 @@ function App() {
   return (
     <div className="App">
       <Select />
-      <Table {...data} />
+      {/* {error ? 
+      <h5 style={{color: 'red'}}>`There was an error: ${error}`</h5>
+      :
+      <Table />
+    } */}
     </div>
   );
 }

@@ -33,7 +33,7 @@ function Select() {
 
     return (
         <div className="select-wrapper">
-            {error && <h5>`There was an error: ${error}`</h5>}
+            {error && <h5 style={{color: 'red'}}>There was an error: {error}</h5>}
             <select className="select-input" value={value} onChange={e => selectHandler(e)}>
                 <optgroup>
                     {filmList.map((el, i) => {
